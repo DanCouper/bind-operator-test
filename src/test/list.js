@@ -25,20 +25,30 @@ test('List.delete_at virtual function.', (t) => {
 
   t.deepEqual([1,2,3,4,5,6]::List.delete_at(2)::List.delete_at(4),
               [1,2,4,5],
-              '[1,2,3,4,5,6]::List.delete_at(2)::List.delete_at(4) should return a new list without 3 and 6.')
+              'chaining should return a new list with two items removed.')
 })
 
 test('List.first virtual function', (t) => {
   t.plan(1)
   t.equal([1,2,3]::List.first(),
   1,
-  '[1,2,3]::List.first should return 1, the first value.')
+  'should return the first value in the list.')
 })
 
 test('List.last virtual function', (t) => {
   t.plan(1)
   t.equal([1,2,3]::List.last(),
   3,
-  '[1,2,3]::List.last should return 3, the last value.')
+  'should return the last value in the list.')
+})
+
+test('List.replace_at virtual function', (t) => {
+  t.plan(2)
+  t.deepEqual([1,2,3]::List.replace_at(4, 10),
+              [1,2,3],
+              'if passed an out-of-bounds index, should return the original list.')
+  t.deepEqual([1,2,3]::List.replace_at(2, 10),
+              [1,2,10],
+              'should return a new list with the new value at the specified index.')
 })
 

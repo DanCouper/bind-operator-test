@@ -35,16 +35,18 @@ const List = {
   replace_at(index, value) {
     if(!index in this) return this
 
-    return this.map((v, i) => {
-      index === i ? value : v
+    return this.map(function(v, i) {
+      // NOTE explicit function/return pair;
+      // fat arrow not working in this case.
+      return index === i ? value : v
     })
   },
 
   update_at(index, callback) {
     if(!index in this) return this
 
-    return this.map((v, i) => {
-      index === i ? v::callback : v
+    return this.map(function(v, i) {
+      return index === i ? v::callback : v
     })
   }
 
