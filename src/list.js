@@ -15,7 +15,7 @@ const List = {
   },
 
   first() {
-    [head, ...tail] = this
+    let [head, ...tail] = this
     return head
   },
 
@@ -28,7 +28,7 @@ const List = {
   },
 
   last() {
-    [head, ...tail] = this.reverse()
+    let [head, ...tail] = this.reverse()
     return head
   },
 
