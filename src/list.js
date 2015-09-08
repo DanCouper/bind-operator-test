@@ -48,7 +48,16 @@ const List = {
     return this.map(function(v, i) {
       return index === i ? callback.apply(null, Array.from(arguments)) : v
     })
-  }
+  },
+
+  // Need to figure out this. It can *either* be passed
+  // a value from `this` to deal with, or it can act as
+  // a 'static' method. It *cannot* do both, and there need be
+  // slightly different ways of dealing with each.
+  // wrap(...items) {
+  //   if(items.length === 1 && Array.isArray(items[0])) return items[0]
+  //   return [...items]
+  // }
 
 }
 

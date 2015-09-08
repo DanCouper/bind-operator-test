@@ -17,13 +17,13 @@ This repo contains a simplified version of Elixir/Erlang's List/:list module, im
 Starting with the initial list, chain on *n* transfomer functions using `::`.
 The tranformer functions are all implemented as methods under the `List` constant. `this` in the functions always refers to a list, and currently [natch] necessitates the functions being explicitly bound.
 
-Each transformer function returns either a new list*, a value, or a boolean.
-
-\* *Except if an out-of-bounds [index/value] parameter is passed, in which case the original list will be returned.*
-
-**TODO** Passing an empty list should return an empty list.
+Each transformer function does not necessarily return a new list.
+**TODO** Passing an empty list should generlly return an empty list.
 
 ### Implemented Functions
+
+**Note 1** none of the `key_` functions (*eg* `List.keysort`) have been implemented as they deal with tuples, which JS most definitely does not have.
+**Note 2** none of the `to_` functions (*eg* `List.to_integer`) have been implemented as they mainly deal in charlists *etc*; not very useful.
 
 #### `List.delete(value)`
 
@@ -42,30 +42,32 @@ Each transformer function returns either a new list*, a value, or a boolean.
 #### `List.first()`
 
 ```
-> [1,2,3,4]::first()
+> [1,2,3,4]::List.first()
 1
 ```
 
-#### `List.foldl(callback, acc)`
-#### `List.foldr(callback, acc)`
+#### `List.foldl(acc, callback)`
+#### `List.foldr(acc, callback)`
 
 #### `List.last()`
 
 ```
-> [1,2,3,4]::last()
+> [1,2,3,4]::List.last()
 4
 ```
 
 #### `List.replace_at(index, value)`
 
 ```
-> [1,2,3,4]::replace_at(1, 'fart')
+> [1,2,3,4]::List.replace_at(1, 'fart')
 [1, 'fart', 3, 4]
 ```
 
 #### `List.update_at(index, callback)`
 
 ```
-> [1,2,3,4]::update_at(1, add2(v) => v + 2)
+> [1,2,3,4]::List.update_at(1, add2(v) => v + 2)
 [1, 4, 3, 4]
 ```
+
+#### `List.wrap(args)`
