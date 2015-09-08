@@ -47,7 +47,9 @@ Each transformer function does not necessarily return a new list.
 ```
 
 #### `List.foldl(acc, callback)`
+**currently unimplemented**
 #### `List.foldr(acc, callback)`
+**currently unimplemented**
 
 #### `List.last()`
 
