@@ -15,7 +15,7 @@ This repo contains a simplified version of Elixir/Erlang's List/:list module, im
 `import List from 'list'`.
 
 Starting with the initial list, chain on *n* transfomer functions using `::`.
-The tranformer functions are all implemented as methods under the `List` constant. `this` in the functions always refers to a list, and currently [nathch] necessitates the functions being explicitly bound.
+The tranformer functions are all implemented as methods under the `List` constant. `this` in the functions always refers to a list, and currently [natch] necessitates the functions being explicitly bound.
 
 Each transformer function returns either a new list*, a value, or a boolean.
 
@@ -64,3 +64,8 @@ Each transformer function returns either a new list*, a value, or a boolean.
 ```
 
 #### `List.update_at(index, callback)`
+
+```
+> [1,2,3,4]::update_at(1, add2(v) => v + 2)
+[1, 4, 3, 4]
+```

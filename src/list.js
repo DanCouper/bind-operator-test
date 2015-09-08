@@ -46,7 +46,7 @@ const List = {
     if(!index in this) return this
 
     return this.map(function(v, i) {
-      return index === i ? v::callback : v
+      return index === i ? callback.apply(null, Array.from(arguments)) : v
     })
   }
 

@@ -28,6 +28,8 @@ test('List.delete_at virtual function.', (t) => {
               'chaining should return a new list with two items removed.')
 })
 
+
+
 test('List.first virtual function', (t) => {
   t.plan(1)
   t.equal([1,2,3]::List.first(),
@@ -49,6 +51,20 @@ test('List.replace_at virtual function', (t) => {
               'if passed an out-of-bounds index, should return the original list.')
   t.deepEqual([1,2,3]::List.replace_at(2, 10),
               [1,2,10],
+              'should return a new list with the new value at the specified index.')
+})
+
+test('List.update_at virtual function', (t) => {
+  const cb = (el) => el + 10
+  t.plan(3)
+  t.deepEqual([1,2,3]::List.update_at(4, cb),
+              [1,2,3],
+              'if passed an out-of-bounds index, should return the original list.')
+  t.deepEqual([1,2,3]::List.update_at(2, cb),
+              [1,2,13],
+              'should return a new list with the new value at the specified index.')
+  t.deepEqual([1,2,3]::List.update_at(2, (v) => v + 10),
+              [1,2,13],
               'should return a new list with the new value at the specified index.')
 })
 
