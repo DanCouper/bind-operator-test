@@ -1,4 +1,4 @@
-class List extends Array {
+class NaiveList extends Array {
   constructor(length) {
     super()
     this.length = length
@@ -16,4 +16,4 @@ class List extends Array {
   }
 }
 
-export default List
+export default NaiveList

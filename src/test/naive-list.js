@@ -1,4 +1,4 @@
-import List from '../list'
+import NaiveList from '../naive-list'
 const test = require('tape')
 
 test('Basic functionality, duplicating native chaining exactly.', (t) => {
@@ -13,17 +13,17 @@ test('Basic functionality, duplicating native chaining exactly.', (t) => {
 })
 
 test('Simple deletion of list items, duplicating native chaining exactly.', (t) => {
-  const list = new List(5).fill(0).map((_, i) => i + 1) // [1,2,3,4,5]
-  const del = List.prototype.delete
+  const list = new NaiveList(5).fill(0).map((_, i) => i + 1) // [1,2,3,4,5]
+  const del = NaiveList.prototype.delete
 
   t.plan(2)
   t.deepEqual(list::del(2), [1,3,4,5], 'should delete the number 2 from [1,2,3,4,5].')
   t.deepEqual(list::del(4)::del(5), [1,3], 'should delete the numbers 4 and 5 from [1,3,4,5].')
 })
 
-test('Deleting list items by index', (t) => {
-  const list = new List(5).fill(0).map((_, i) => i + 1) // [1,2,3,4,5]
-  const del_at = List.prototype.delete_at
+test('Deleting list items by index, duplicating native chaining exactly.', (t) => {
+  const list = new NaiveList(5).fill(0).map((_, i) => i + 1) // [1,2,3,4,5]
+  const del_at = NaiveList.prototype.delete_at
 
   t.plan(2)
   t.deepEqual(list::del_at(1), [1,3,4,5], 'should delete the number 2 from [1,2,3,4,5].')
