@@ -1,6 +1,6 @@
 {
   "name": "bind-operator-test",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Test of the proposed ES7 bind operator.",
   "main": "dist/list.js",
   "scripts": {
