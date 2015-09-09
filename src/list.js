@@ -13,6 +13,10 @@ const del_at = function(list, index) {
   return list.filter((_, i) => index !== i)
 }
 
+const duplicate = function(item, times) {
+  return Array(times).fill(item)
+}
+
 const first = function(list) {
   let [head, ...tail] = list
   return head
@@ -54,16 +58,19 @@ const wrap = function(...items) {
   return [...items]
 }
 
+const zip = function() {}
+
 const List = {
   del: enforceArity(del, 2),
   del_at: enforceArity(del_at, 2),
+  duplicate: enforceArity(duplicate, 2),
   first: enforceArity(first, 1),
   foldl: enforceArity(foldl, 3),
   foldr: enforceArity(foldr, 3),
   last: enforceArity(last, 1),
   replace_at: enforceArity(replace_at, 3),
   update_at: enforceArity(update_at, 3),
-  wrap: enforceArity(wrap, 1)
+  wrap: enforceArity(wrap, 1),
 }
 
 export default List

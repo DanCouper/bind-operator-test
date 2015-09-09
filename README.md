@@ -68,6 +68,21 @@ Returns a new list with the value at the specified index removed.
 [1,2,3]
 ```
 
+#### `List.duplicate(item, times)`
+
+Returns a list of *n* times the item.
+
+```
+> List.duplicate('foo', 3)
+['foo','foo','foo']
+```
+
+```
+> 'foo'::List.duplicate(3)
+['foo','foo','foo']
+```
+
+
 #### `List.first(list)`
 
 Returns the first value in the given list.

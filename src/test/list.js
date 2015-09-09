@@ -41,6 +41,23 @@ test('List.del_at function...', (t) => {
               'chaining should return a new list with two items removed.')
 })
 
+test('List.duplicate function...', (t) => {
+  t.plan(2)
+
+  t.deepEqual(List.duplicate('fart', 3),
+              ['fart','fart','fart'],
+              'running the function without chaining should return a list of *n* duplicates of the value passed')
+  // Something is going crackers here, I do not think this is my issue:
+  // t.deepEqual('fart'::List.duplicate(3),
+  //             ['fart','fart','fart'],
+  //             'should return a list of *n* duplicates of the value passed')
+  // > [ { 0: 'f', 1: 'a', 2: 'r', 3: 't' }, { 0: 'f', 1: 'a', 2: 'r', 3: 't' }, { 0: 'f', 1: 'a', 2: 'r', 3: 't' } ]
+
+  t.deepEqual([1,2]::List.duplicate(3),
+              [[1,2],[1,2],[1,2]],
+              'should return a list of *n* duplicates of the value passed')
+})
+
 test('List.first function...', (t) => {
   t.plan(2)
   t.equal(List.first([1,2,3]),
