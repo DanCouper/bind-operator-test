@@ -71,6 +71,7 @@ Returns a new list with the value at the specified index removed.
 #### `List.duplicate(item, times)`
 
 Returns a list of *n* times the item.
+NOTE Istanbul seems to die on ES6 Array methods, which kills tests for this.
 
 ```
 > List.duplicate('foo', 3)
@@ -78,9 +79,6 @@ Returns a list of *n* times the item.
 ```
 
 ```
-// NOTE the following produces a strange result during the testing,
-// exploding strings into an object in the REPL. It seems to be visibly
-// unboxing the string and not then dealing with it.
 > 'foo'::List.duplicate(3)
 ['foo','foo','foo']
 ```
