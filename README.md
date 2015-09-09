@@ -4,11 +4,17 @@
 
 [![Coverage Status](https://coveralls.io/repos/DanCouper/bind-operator-test/badge.svg?branch=master&service=github)](https://coveralls.io/github/DanCouper/bind-operator-test?branch=master)
 
-## About
+## Intro
 
 Test of the proposed ES7 bind operator `::` ([proposal](https://github.com/zenparsing/es-function-bind), [strawman](http://wiki.ecmascript.org/doku.php?id=strawman:bind_operator)).
 
+## About
+
 This repo contains a simplified version of Elixir/Erlang's List/:list module, implemented as a series of [essentially virtual] functions. These functions can be chained using the bind operator. This is facilitated by the use of a decrator function that fixes their arity and injects a `this` context as the first argument if the function is chained. The bind operator can then be used to bind the result of the previous computation to `this`. It works the same as Elixir's pipe (`|>`) operator, or the Unix pipe (`|`).
+
+## Requirements
+
+This requires [Babel](http://babeljs.io) be installed and up-to-date, and the test commands all use `--stage 0` to turn on [experimental ES7 features](http://babeljs.io/docs/usage/experimental/). Node v0.12.7 used (I am getting segfaults/various other errors on Node 4.0).
 
 ### Usage
 
