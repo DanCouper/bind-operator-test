@@ -1,7 +1,7 @@
 import List from '../list'
 const test = require('tape')
 
-test('List.del virtual function...', (t) => {
+test('List.del function...', (t) => {
   t.plan(4)
 
   t.deepEqual(List.del([1,2,3], 2),
@@ -21,7 +21,7 @@ test('List.del virtual function...', (t) => {
               'chaining matched deletions should cause a new list to be returned without those values.')
 })
 
-test('List.del_at virtual function...', (t) => {
+test('List.del_at function...', (t) => {
   t.plan(4);
 
   t.deepEqual(List.del_at([1,2,3], 2),
@@ -41,7 +41,7 @@ test('List.del_at virtual function...', (t) => {
               'chaining should return a new list with two items removed.')
 })
 
-test('List.first virtual function...', (t) => {
+test('List.first function...', (t) => {
   t.plan(2)
   t.equal(List.first([1,2,3]),
           1,
@@ -52,7 +52,7 @@ test('List.first virtual function...', (t) => {
           'should return the first value in the list.')
 })
 
-test('List.last virtual function', (t) => {
+test('List.last function', (t) => {
   t.plan(2)
 
   t.equal(List.last([1,2,3]),
@@ -64,7 +64,7 @@ test('List.last virtual function', (t) => {
           'should return the last value in the list.')
 })
 
-test('List.replace_at virtual function', (t) => {
+test('List.replace_at function', (t) => {
   t.plan(3)
 
   t.deepEqual(List.replace_at([1,2,3], 0, 'fart'),
@@ -80,7 +80,7 @@ test('List.replace_at virtual function', (t) => {
               'should return a new list with the new value at the specified index.')
 })
 
-test('List.update_at virtual function', (t) => {
+test('List.update_at function', (t) => {
   const cb = (el) => el + 10
   t.plan(4)
 

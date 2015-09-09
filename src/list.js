@@ -45,7 +45,7 @@ const update_at = function(list, index, callback) {
   if(!index in list) return list
 
   return list.map(function(v, i) {
-    return index === i ? callback.apply(null, Array.from(arguments)) : v
+    return index === i ? callback.apply(null, arguments) : v
   })
 }
 
