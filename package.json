@@ -2,7 +2,7 @@
   "name": "bind-operator-test",
   "version": "0.0.1",
   "description": "Test of the proposed ES7 bind operator.",
-  "main": "dist/index.js",
+  "main": "dist/list.js",
   "scripts": {
     "dev": "babel-node src/index.js",
     "lint": "eslint src/**/*.js",
