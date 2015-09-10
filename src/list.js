@@ -58,7 +58,14 @@ const wrap = function(...items) {
   return [...items]
 }
 
-const zip = function() {}
+const zip = function(listOfLists) {
+  let op = listOfLists.filter(arr => arr.length !== 0) // remove empty arrays
+  let shortest = op.reduce((p,c) => (p.length > c.length) ? c : p ).length
+  return [for (i of Array(shortest).keys())
+            op.reduce(function(acc, curr) {
+              acc.push(curr[i]);
+              return acc }, [])]
+}
 
 const List = {
   del: enforceArity(del, 2),
@@ -71,6 +78,7 @@ const List = {
   replace_at: enforceArity(replace_at, 3),
   update_at: enforceArity(update_at, 3),
   wrap: enforceArity(wrap, 1),
+  zip: enforceArity(zip, 1)
 }
 
 export default List

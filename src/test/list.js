@@ -136,4 +136,25 @@ test('List.wrap function', (t) => {
               'if an array is passed, it should be returned as-is')
 })
 
+test('List.zip function', (t) => {
+  t.plan(4)
+
+  t.deepEqual(List.zip([[1,2],[3,4],[1,4]]),
+              [[1,3,1],[2,4,4]],
+              'running function without chaining should zip list of lists of equal size')
+
+  t.deepEqual([[1,2],[3,4],[1,4]]::List.zip(),
+              [[1,3,1],[2,4,4]],
+              'running function should zip list of lists of equal size')
+
+  t.deepEqual([[1,2,3,4],[3,4,5],[1,4]]::List.zip(),
+              [[1,3,1],[2,4,4]],
+              'zipping should stop based on the length of the shortest list; extra values should be discarded.')
+
+  t.deepEqual([[],[1,2],[3,4],[],[1,4]]::List.zip(),
+              [[1,3,1],[2,4,4]],
+              'empty lists should be ignored.')
+
+})
+
 
