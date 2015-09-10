@@ -14,7 +14,19 @@ const del_at = function(list, index) {
 }
 
 const duplicate = function(item, times) {
-  return Array(times).fill(item)
+  // NOTE the test on this should pass without issue:
+  // ES6/strict mode should prevent boxed objects being returned
+  // in lieu of primitives. This isn't happening, so there is
+  // an ugle if/else block to manually unbox `this` values.
+  if(item instanceof String) {
+    return Array(times).fill(item.toString())
+  }
+  else if(item instanceof Number) {
+    return Array(times).fill(Number(item))
+  }
+  else {
+    return Array(times).fill(item)
+  }
 }
 
 const first = function(list) {

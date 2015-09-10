@@ -41,24 +41,30 @@ test('List.del_at function...', (t) => {
               'chaining should return a new list with two items removed.')
 })
 
-// test('List.duplicate function...', (t) => {
-  // Something is going crackers here, I do not think this is my issue:
-  // NOTE probably Istanbul issue. look at replacing Istanbul, everything breaks too often.
+test('List.duplicate function...', (t) => {
+  // NOTE the test on this should pass without issue:
+  // ES6/strict mode should prevent boxed objects being returned
+  // in lieu of primitives. This isn't happening, so there is
+  // an ugle if/else block to manually unbox `this` values.
+  "use strict"
+  t.plan(4)
 
-  // t.plan(1)
+  t.deepEqual(List.duplicate('fart', 3),
+              ['fart','fart','fart'],
+              'running the function without chaining should return a list of *n* duplicates of the value passed')
 
-  // t.deepEqual(List.duplicate('fart', 3),
-  //             ['fart','fart','fart'],
-  //             'running the function without chaining should return a list of *n* duplicates of the value passed')
-  // t.deepEqual('fart'::List.duplicate(3),
-  //             ['fart','fart','fart'],
-  //             'should return a list of *n* duplicates of the value passed')
-  // > [ { 0: 'f', 1: 'a', 2: 'r', 3: 't' }, { 0: 'f', 1: 'a', 2: 'r', 3: 't' }, { 0: 'f', 1: 'a', 2: 'r', 3: 't' } ]
+  t.deepEqual('fart'::List.duplicate(3),
+              ['fart','fart','fart'],
+              'should return a list of *n* duplicates of the value passed')
 
-  // t.deepEqual([1,2]::List.duplicate(3),
-  //             [[1,2],[1,2],[1,2]],
-  //             'should return a list of *n* duplicates of the value passed')
-//})
+  t.deepEqual([1,2]::List.duplicate(3),
+               [[1,2],[1,2],[1,2]],
+               'should return an array of *n* duplicates of the array passed')
+
+  t.deepEqual(1::List.duplicate(3),
+               [1,1,1],
+               'should return an array of *n* duplicates of the number passed')
+})
 
 test('List.first function...', (t) => {
   t.plan(2)
@@ -71,7 +77,7 @@ test('List.first function...', (t) => {
           'should return the first value in the list.')
 })
 
-test('List.last function', (t) => {
+test('List.last function...', (t) => {
   t.plan(2)
 
   t.equal(List.last([1,2,3]),
@@ -83,7 +89,7 @@ test('List.last function', (t) => {
           'should return the last value in the list.')
 })
 
-test('List.replace_at function', (t) => {
+test('List.replace_at function...', (t) => {
   t.plan(3)
 
   t.deepEqual(List.replace_at([1,2,3], 0, 'fart'),
@@ -99,7 +105,7 @@ test('List.replace_at function', (t) => {
               'should return a new list with the new value at the specified index.')
 })
 
-test('List.update_at function', (t) => {
+test('List.update_at function...', (t) => {
   const cb = (el) => el + 10
   t.plan(4)
 
@@ -120,7 +126,7 @@ test('List.update_at function', (t) => {
               'should return a new list with the new value at the specified index.')
 })
 
-test('List.wrap function', (t) => {
+test('List.wrap function...', (t) => {
   t.plan(3)
 
   t.deepEqual(List.wrap('fart'),
@@ -136,7 +142,7 @@ test('List.wrap function', (t) => {
               'if an array is passed, it should be returned as-is')
 })
 
-test('List.zip function', (t) => {
+test('List.zip function...', (t) => {
   t.plan(4)
 
   t.deepEqual(List.zip([[1,2],[3,4],[1,4]]),
