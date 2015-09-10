@@ -4,6 +4,20 @@
 
 [![Coverage Status](https://coveralls.io/repos/DanCouper/bind-operator-test/badge.svg?branch=master&service=github)](https://coveralls.io/github/DanCouper/bind-operator-test?branch=master)
 
+```
+import { duplicate, del, first } from 'list'
+
+> [0,1,2,3]::del(0)::first()::duplicate(3)
+// [0,1,2,3] -> [1,2,3] -> 1 -> [1,1,1]
+```
+
+```
+import List from 'list'
+
+> List.wrap(1,2,3,4)::List.del(4)::List.last()
+// [1,2,3,4] -> [1,2,3] -> 3
+```
+
 
 ## Intro
 
@@ -11,7 +25,40 @@ Test of the proposed ES7 bind operator `::` ([proposal](https://github.com/zenpa
 
 ## About
 
-This repo contains a simplified version of Elixir/Erlang's List/:list module, implemented as a series of [essentially virtual] functions. These functions can be chained using the bind operator. This is facilitated by the use of a decrator function that fixes their arity and injects a `this` context as the first argument if the function is chained. The bind operator can then be used to bind the result of the previous computation to `this`. It works the same as Elixir's pipe (`|>`) operator, or the Unix pipe (`|`).
+This repo contains a simplified version of Elixir/Erlang's List/:list module, implemented as a series of [essentially virtual] functions. These functions can be chained using the bind operator. This is facilitated by the use of a decorator function that fixes their arity and injects a `this` context as the first argument if the function is chained. The bind operator can then be used to bind the result of the previous computation to `this`. It works the same as Elixir's pipe (`|>`) operator, or the Unix pipe (`|`).
+
+The arity function (with zero error handling) module:
+```
+const enforceArity = (fn, arity) =>
+  function(...args) {
+    if (arity - args.length == 1) {
+      return fn.call(this, this, ...args)
+    } else {
+      return fn.call(null, ...args)
+    }
+  }
+```
+
+Example lib:
+```
+const add = (a,b) => a + b
+const mul = (a,b) => a * b
+
+const Calc = {
+    add: enforceArity(add, 2),
+    mul: enforceArity(mul, 2),
+}
+
+export default Calc
+```
+
+Usage:
+```
+import { add, mul } from 'calc'
+
+> 2::add(4)::mul(7)
+42
+```
 
 ## Requirements
 
@@ -41,10 +88,6 @@ When they are used in conjunction with the bind operator, the first argument is 
 
 ### Implemented Functions
 
-**Note 1** none of the `key_` functions (*eg* `List.keysort`) have been implemented as they deal with tuples, which JS most definitely does not have.
-
-**Note 2** none of the `to_` functions (*eg* `List.to_integer`) have been implemented as they mainly deal in charlists *etc*; not very useful.
-
 #### `List.del(list, value)`
 
 Returns a new list with the specified value removed.
@@ -72,7 +115,7 @@ Returns a new list with the value at the specified index removed.
 #### `List.duplicate(item, times)`
 
 Returns a list of *n* times the item.
-NOTE Istanbul seems to die on ES6 Array methods, which kills tests for this.
+*NOTE Istanbul seems to die on this (testing in Tape alone is fine), & tests for this have been commented out.*
 
 ```
 > List.duplicate('foo', 3)
