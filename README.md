@@ -115,7 +115,7 @@ Returns a new list with the value at the specified index removed.
 #### `List.duplicate(item, times)`
 
 Returns a list of *n* times the item.
-*NOTE Istanbul seems to die on this (testing in Tape alone is fine), & tests for this have been commented out.*
+*NOTE the test on this should pass without issue: ES6/strict mode should prevent boxed objects being returned in lieu of primitives. This isn't happening, so there is an ugle if/else block to manually unbox `this` values.*
 
 ```
 > List.duplicate('foo', 3)
