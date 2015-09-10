@@ -152,3 +152,16 @@ Wraps passed values in an array, and returns that array. If the passed value is 
 > 'fart'::List.wrap()
 ['fart']
 ```
+
+
+#### `List.zip(listOfLists)`
+
+Zips an array of arrays. Extra values are ignored; the zip operation will return a number of zipped lists equal to the shortest subarray. Each will be of length equal to the `listOfLists` length. Empty lists are ignored.
+
+```
+> List.zip([[1,2], [], [1,2,3], [1,2]])
+[[1,1,1],[2,2,2]]
+
+> [[1,2], [], [1,2,3], [1,2]]::List.zip()
+[[1,1,1],[2,2,2]]
+```
